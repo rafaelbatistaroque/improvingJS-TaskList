@@ -5,15 +5,15 @@ export default class UI {
         this.textBox = document.querySelector('#input');
     }
     iniciar() {
-        this.adicionarEventoNovaTarefa();
+        this.adicionarEventoTextBoxNovaTarefa();
         return this;
     }
 
-    adicionarEventoNovaTarefa() {
+    adicionarEventoTextBoxNovaTarefa() {
         document.addEventListener('keyup', (event) => {
             if (event.keyCode === 13 && this.textBox.value) {
-                const tarefa = Tarefa.criarNova(this.textBox.value);
-                this.listaTarefas.appendChild(tarefa);
+                const tarefaCriada = new Tarefa(this.textBox.value).criarNova();
+                this.listaTarefas.appendChild(tarefaCriada);
                 this.textBox.value = null;
             }
         });

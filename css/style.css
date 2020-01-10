@@ -2,3 +2,6 @@
     display: flex;
     vertical-align: middle;
 }
+.texto-task.riscado{
+    text-decoration: line-through;
+    }

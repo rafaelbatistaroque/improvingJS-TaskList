@@ -5,23 +5,42 @@ export default class UI {
         this.textBox = document.querySelector('#input');
         this.btnAdd = document.querySelector('#AddTarefa');
         this.inserirTarefaLista = this.inserirTarefaLista.bind(this);
+        this.concluirTarefa = this.concluirTarefa.bind(this);
+        this.deletarTarefa = this.deletarTarefa.bind(this);
     }
     iniciar() {
-        // console.log(this.elementsAdd);
-        this.adicionarEventosNovaTarefa();
+        this.adicionarEventosInteracao();
         return this;
     }
 
-    adicionarEventosNovaTarefa() {
+    adicionarEventosInteracao(elementosTarefa) {
         this.btnAdd.addEventListener('click', this.inserirTarefaLista);
+        if (elementosTarefa) {
+            elementosTarefa.firstChild.addEventListener('click', this.concluirTarefa);
+            elementosTarefa.lastChild.addEventListener('click', this.deletarTarefa);
+        }
     }
-    inserirTarefaLista(event) {
-        console.log(event.target);
+    inserirTarefaLista() {
         if (this.textBox.value) {
-            const tarefaCriada = new Tarefa(this.textBox.value).criarNova();
-            this.listaTarefas.appendChild(tarefaCriada);
+            const tarefaCriadaHtml = new Tarefa(this.textBox.value).criarNova();
+            this.listaTarefas.appendChild(tarefaCriadaHtml);
+            this.adicionarEventosInteracao(tarefaCriadaHtml);
             this.textBox.value = null;
         }
+    }
+    concluirTarefa(event) {
+        const check = event.target;
+        const textoTarefa = check.nextElementSibling;
+
+        check.classList.toggle('fa-circle-thin');
+        check.classList.toggle('fa-circle');
+        textoTarefa.classList.toggle('riscado');
+    }
+    deletarTarefa(event) {
+        const lixeira = event.target;
+        const lista = lixeira.parentNode.parentNode;
+        const itemLista = lixeira.parentNode;
+        lista.removeChild(itemLista);
     }
 
 }

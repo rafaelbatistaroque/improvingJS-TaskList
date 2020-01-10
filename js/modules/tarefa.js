@@ -11,10 +11,10 @@ export default class Tarefa {
     }
     configurarElementos() {
         this.tarefaEstrutura.classList.add('task');
-        this.elementos[0].classList.add('fa', 'fa-circle-thin');
+        this.elementos[0].classList.add('far', 'fa-square');
         this.elementos[1].classList.add('texto-task');
         this.elementos[1].textContent = this.nomeTarefa;
-        this.elementos[2].classList.add('fa', 'fa-trash-o');
+        this.elementos[2].classList.add('far', 'fa-trash-alt');
     }
     criarNova() {
         this.configurarElementos();

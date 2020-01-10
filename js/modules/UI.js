@@ -32,8 +32,8 @@ export default class UI {
         const check = event.target;
         const textoTarefa = check.nextElementSibling;
 
-        check.classList.toggle('fa-circle-thin');
-        check.classList.toggle('fa-circle');
+        check.classList.toggle('fa-square');
+        check.classList.toggle('fa-check-square');
         textoTarefa.classList.toggle('riscado');
     }
     deletarTarefa(event) {

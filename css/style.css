@@ -1,7 +1,106 @@
-.task{
+body{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    background: #f5f5f5;
+}
+p, input{
+    font-family: Axiforma;
+    font-size: 1rem;
+}
+.container{
+    margin: 20px auto;
+    width: 300px;
+    height: 700px;
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 5px 10px 20px 1px #b3b3b3;
     display: flex;
-    vertical-align: middle;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.header{
+    flex: 1;
+    border-radius: 20px 20px 0 0;
+    background-image: url('../img/image1.png');
+    height: 200px;
+    position: relative;
+}
+.limpar{
+    color: #fff;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    transition: transform .3s;
+}
+.limpar:hover{
+    transform: rotate(90deg);
+    transition: transform .3s;
+}
+.conteudo{
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 5px;
+}
+#lista{
+    flex: 2;
+    margin: 0px;
+    padding: 0px;
+    overflow-y: scroll;
+}
+#lista::-webkit-scrollbar{
+    width: 14px;
+    background: #fff;
+}
+#lista::-webkit-scrollbar-thumb{
+    border-radius: 6px;
+    border-left: 3px solid #fff;
+    border-right: 3px solid #fff;
+    background: #ba98be;
+}
+.task{
+    flex: 1;
+    display: flex;
+    margin: 0px;
+    padding: 10px 20px;
+    text-align: center;
+    justify-content: space-between;
+    color: #606060;
+    border-bottom: 1px solid #f5f5f5;
+}
+.texto-task{
+    flex: 2;
+    cursor: pointer;
+    margin: 0 auto;
+    align-content: center;
 }
 .texto-task.riscado{
     text-decoration: line-through;
-    }
+}
+.add-item{
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    height: 50px;
+}
+#input{
+    border: 1px solid #b3b3b3;
+    border-radius: 10px 0 0 10px;
+    padding: 10px;
+    width: 220px;
+    outline: none;
+}
+button{
+    border: 1px solid #f5f5f5;
+    background: #86468f;
+    border-radius: 0 10px 10px 0;
+    width: 30px;
+    color: #f5f5f5;
+    outline: none;
+}
+button:hover{
+    background: #ba98be;
+    color: #606060;
+}

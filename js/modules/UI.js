@@ -1,27 +1,26 @@
 import Tarefa from './tarefa.js';
 export default class UI {
-    constructor() {
-        this.listaTarefas = document.querySelector('#lista');
-        this.textBox = document.querySelector('#input');
-        this.btnAdd = document.querySelector('#AddTarefa');
-        this.inserirTarefaLista = this.inserirTarefaLista.bind(this);
-        this.concluirTarefa = this.concluirTarefa.bind(this);
-        this.deletarTarefa = this.deletarTarefa.bind(this);
+    constructor(lista, inputTarefa, btnAddtarefa) {
+        this.listaTarefas = document.querySelector(lista);
+        this.textBox = document.querySelector(inputTarefa);
+        this.btnAdd = document.querySelector(btnAddtarefa);
     }
     iniciar() {
-        this.adicionarEventosInteracao();
+        if (this.btnAdd && this.textBox && this.listaTarefas) {
+            this.bindEventos();
+            this.adicionarEventosInteracao();
+        }
         return this;
     }
-
-    adicionarEventosInteracao(elementosTarefa) {
+    adicionarEventosInteracao(tarefaCriada) {
         this.btnAdd.addEventListener('click', this.inserirTarefaLista);
-        if (elementosTarefa) {
-            elementosTarefa.firstChild.addEventListener('click', this.concluirTarefa);
-            elementosTarefa.lastChild.addEventListener('click', this.deletarTarefa);
+        if (tarefaCriada) {
+            tarefaCriada.firstChild.addEventListener('click', this.concluirTarefa);
+            tarefaCriada.lastChild.addEventListener('click', this.deletarTarefa);
         }
     }
     inserirTarefaLista() {
-        if (this.textBox.value) {
+        if (this.textBox.value && this.listaTarefas) {
             const tarefaCriadaHtml = new Tarefa(this.textBox.value).criarNova();
             this.listaTarefas.appendChild(tarefaCriadaHtml);
             this.adicionarEventosInteracao(tarefaCriadaHtml);
@@ -38,9 +37,12 @@ export default class UI {
     }
     deletarTarefa(event) {
         const lixeira = event.target;
-        const lista = lixeira.parentNode.parentNode;
         const itemLista = lixeira.parentNode;
-        lista.removeChild(itemLista);
+        this.listaTarefas.removeChild(itemLista);
     }
-
+    bindEventos() {
+        this.inserirTarefaLista = this.inserirTarefaLista.bind(this);
+        this.concluirTarefa = this.concluirTarefa.bind(this);
+        this.deletarTarefa = this.deletarTarefa.bind(this);
+    }
 }
